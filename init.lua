@@ -289,9 +289,6 @@ require("lazy").setup(
         if vim.fn.executable("rust-analyzer") then
           require("lspconfig")["rust_analyzer"].setup({})
         end
-        if vim.fn.executable("deno") then
-          require("lspconfig")["denols"].setup({})
-        end
       end,
       keys = {
         {
