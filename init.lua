@@ -1,4 +1,4 @@
-vim.o.guifont = "MonoLisa:h12"
+vim.o.guifont = "MonoLisa Nerd Font:h12"
 vim.o.clipboard = "unnamedplus"
 vim.o.shiftwidth = 4
 vim.o.termguicolors = true
@@ -286,6 +286,15 @@ require("lazy").setup(
             require("lspconfig")[server_name].setup({})
           end
         })
+        require("lspconfig").lua_ls.setup {
+          settings = {
+            Lua = {
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true)
+              }
+            }
+          }
+        }
       end,
       keys = {
         {
