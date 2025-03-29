@@ -45,7 +45,7 @@ require("lazy").setup(
     {
       "rebelot/kanagawa.nvim",
       init = function()
-        vim.cmd.colorscheme("kanagawa")
+        -- vim.cmd.colorscheme("kanagawa")
       end,
     },
 
@@ -85,14 +85,6 @@ require("lazy").setup(
     },
 
     {
-      "rose-pine/neovim",
-      as = "rosepine",
-      init = function()
-        -- vim.cmd.colorscheme("rose-pine")
-      end,
-    },
-
-    {
       "nikolvs/vim-sunbather",
       init = function()
         -- vim.o.background = "dark"
@@ -112,7 +104,7 @@ require("lazy").setup(
       "rose-pine/neovim",
       name = "rose-pine",
       init = function()
-        vim.cmd.colorscheme "rose-pine"
+        --vim.cmd.colorscheme "rose-pine"
       end
     },
 
@@ -601,6 +593,13 @@ require("lazy").setup(
         },
       },
     },
+
+    {
+      "comfysage/evergarden",
+      init = function()
+        vim.cmd.colorscheme "evergarden"
+      end
+    }
 
   },
   -- lazy options
