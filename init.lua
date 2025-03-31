@@ -269,26 +269,6 @@ require("lazy").setup(
           desc = "[S]earch [C]olorschemes",
           mode = "n"
         },
-      }
-    },
-
-    {
-      "neovim/nvim-lspconfig",
-      dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "j-hui/fidget.nvim",
-        "saghen/blink.cmp"
-      },
-      init = function()
-        require("mason-lspconfig").setup_handlers({
-          function (server_name)
-            require("lspconfig")[server_name].setup({})
-          end
-        })
-      end,
-      keys = {
         {
           "gd",
           function()
@@ -337,6 +317,26 @@ require("lazy").setup(
           desc = "[W]orkspace [S]ymbols",
           mode = "n"
         },
+      }
+    },
+
+    {
+      "neovim/nvim-lspconfig",
+      dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "j-hui/fidget.nvim",
+        "saghen/blink.cmp"
+      },
+      init = function()
+        require("mason-lspconfig").setup_handlers({
+          function (server_name)
+            require("lspconfig")[server_name].setup({})
+          end
+        })
+      end,
+      keys = {
         {
           "<leader>rn",
           function()
