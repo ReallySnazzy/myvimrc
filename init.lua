@@ -185,11 +185,6 @@ require("lazy").setup(
       opts = {},
     },
 
-    -- Util functions for telescope
-    {
-      "nvim-lua/plenary.nvim",
-    },
-
     {
       "nvim-telescope/telescope.nvim",
       event = "VimEnter",
