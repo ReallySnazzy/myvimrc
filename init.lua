@@ -135,10 +135,6 @@ require("lazy").setup(
     },
 
     {
-      "gleam-lang/gleam.vim",
-    },
-
-    {
       "nvim-tree/nvim-web-devicons",
     },
 
@@ -162,8 +158,20 @@ require("lazy").setup(
       "williamboman/mason-lspconfig.nvim",
       config = true,
       dependencies = {
-        "williamboman/mason.nvim"
+        "williamboman/mason.nvim",
+        "saghen/blink.cmp"
       },
+      opts = {
+        servers = {
+          lua_ls = {}
+        }
+      },
+      config = function(_, opts)
+        local lspconfig = require("lspconfig")
+        for server, config in pairs(opts.servers) do
+          lspconfig[server].setup(config)
+        end
+      end
     },
 
     {
@@ -271,6 +279,7 @@ require("lazy").setup(
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "j-hui/fidget.nvim",
+        "saghen/blink.cmp"
       },
       init = function()
         require("mason-lspconfig").setup_handlers({
@@ -278,15 +287,6 @@ require("lazy").setup(
             require("lspconfig")[server_name].setup({})
           end
         })
-        require("lspconfig").lua_ls.setup {
-          settings = {
-            Lua = {
-              workspace = {
-                library = vim.api.nvim_get_runtime_file("", true)
-              }
-            }
-          }
-        }
       end,
       keys = {
         {
@@ -431,59 +431,21 @@ require("lazy").setup(
     },
 
     {
-      "hrsh7th/cmp-nvim-lsp",
-    },
-
-    {
-      "hrsh7th/cmp-buffer",
-    },
-
-    {
-      "L3MON4D3/LuaSnip",
-      init = function()
-        require('snippets').add_snippets()
-      end
-    },
-
-    {
-      "saadparwaiz1/cmp_luasnip",
-    },
-
-    {
-      "hrsh7th/nvim-cmp",
-      lazy = false,
-      depedencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-      },
-      opts = function()
-        require("luasnip").config.setup({})
-        local cmp = require("cmp")
-        return {
-          completion = {
-            completeopt = "menu,menuone,noinsert"
-          },
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-            { name = "buffer" },
-          },
-          snippet = {
-            expand = function(args)
-              require('luasnip').lsp_expand(args.body)
-            end,
-          },
-          mapping = cmp.mapping.preset.insert({
-            ['<C-Space'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<C-n>'] = cmp.mapping.select_next_item(),
-            ['<C-p>'] = cmp.mapping.select_prev_item(),
-            ['<C-y>'] = cmp.mapping.confirm({ select = true}),
-          })
+      "saghen/blink.cmp",
+      opts = {
+        keymap = {
+          preset = "default"
+        },
+        sources = {
+          default = { "lsp", "path", "snippets", "buffer" }
+        },
+        fuzzy = {
+          implementation = "rust",
+          prebuilt_binaries = {
+            force_version = "v0.14.2"
+          }
         }
-      end,
+      },
     },
 
       -- Change to a better terminal
@@ -538,7 +500,7 @@ require("lazy").setup(
     {
       "yetone/avante.nvim",
       event = "VeryLazy",
-      lazy = false,
+      --lazy = false,
       version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
       opts = {
         -- add any opts here
@@ -565,7 +527,6 @@ require("lazy").setup(
         "MunifTanjim/nui.nvim",
         --- The below dependencies are optional,
         "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-        "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
         {
           -- support for image pasting
           "HakonHarnes/img-clip.nvim",
