@@ -156,7 +156,6 @@ require("lazy").setup(
 
     {
       "williamboman/mason-lspconfig.nvim",
-      config = true,
       dependencies = {
         "williamboman/mason.nvim",
         "saghen/blink.cmp"
