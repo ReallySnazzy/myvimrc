@@ -148,32 +148,6 @@ require("lazy").setup(
     },
 
     {
-      "williamboman/mason.nvim",
-      opts = {
-        PATH = "append"
-      }
-    },
-
-    {
-      "williamboman/mason-lspconfig.nvim",
-      dependencies = {
-        "williamboman/mason.nvim",
-        "saghen/blink.cmp"
-      },
-      opts = {
-        servers = {
-          lua_ls = {}
-        }
-      },
-      config = function(_, opts)
-        local lspconfig = require("lspconfig")
-        for server, config in pairs(opts.servers) do
-          lspconfig[server].setup(config)
-        end
-      end
-    },
-
-    {
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = true
@@ -317,18 +291,17 @@ require("lazy").setup(
     {
       "neovim/nvim-lspconfig",
       dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "j-hui/fidget.nvim",
         "saghen/blink.cmp"
       },
       init = function()
-        require("mason-lspconfig").setup_handlers({
-          function (server_name)
-            require("lspconfig")[server_name].setup({})
-          end
-        })
+        local lsp_servers = {
+          "rust_analyzer",
+          "ocamllsp"
+        }
+        for _, server_name in ipairs(lsp_servers) do
+          require("lspconfig")[server_name].setup({})
+        end
       end,
       keys = {
         {
@@ -560,3 +533,5 @@ require("lazy").setup(
   -- lazy options
   {}
 )
+
+vim.lsp.enable("ocamllsp")
