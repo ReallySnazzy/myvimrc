@@ -349,14 +349,7 @@ return {
       opts = {
         -- add any opts here
         -- for example
-        provider = "claude",
-        claude = {
-          model = "claude-3-7-sonnet-20250219", -- your desired model (or use gpt-4o, etc.)
-          timeout = 30000, -- timeout in milliseconds
-          temperature = 0, -- adjust if needed
-          max_tokens = 8192,
-          -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
-        },
+        provider = "gemini",
         hints = {
           enabled = false
         }
