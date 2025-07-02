@@ -15,6 +15,7 @@
 | `sz` | Search ripgrep |
 | `s.` | Search recent files (. for repeat) |
 | `sc` | Search colorscheme previews |
+| `<leader>g` | Show lazygit |
 | `gd` | Goto Definition |
 | `gr` | Goto References |
 | `gi` | Goto Implementations |
