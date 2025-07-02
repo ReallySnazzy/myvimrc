@@ -15,6 +15,18 @@ return {
     },
 
     {
+      "folke/snacks.nvim",
+      lazy = false,
+      opts = {
+        lazygit = { enabled = true },
+        indent = { enabled = true }
+      },
+      keys = {
+        { "<leader>g", function() Snacks.lazygit() end, desc = "Open Lazygit", mode = "n" }
+      }
+    },
+
+    {
       "stevearc/oil.nvim",
       opts = {},
       dependencies = { "nvim-tree/nvim-web-devicons" },
