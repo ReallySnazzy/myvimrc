@@ -339,12 +339,12 @@ MiniDeps.add {
 }
 
 MiniDeps.add{
-  source = 'nvim-mini/mini.completion',
-  checkout = 'stable'
+  source = 'nvim-mini/mini.completion'
 }
 
 require("mini.completion").setup {
-  fallback_action = '<C-y>',
+  -- Adding an 'accept' causes it to start inserting characters due to messed up text ranges
+  --fallback_action = '<C-y>',
   mappings = {
     scroll_down = '<C-n>',
     scroll_up = '<C-p>'
